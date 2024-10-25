@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Filter from "../components/Filter";
 import PlanetCard from "../components/PlanetCard";
 import PlanetImg from "../components/PlanetImg";
@@ -7,23 +7,23 @@ import planetsData from "../mock/planets";
 import "../css/Planets.css";
 
 function Planets() {
-	const [searchValue, setSearchValue] = React.useState("");
+	const [searchValue, setSearchValue] = useState("");
 	const onSearchValue = (newValue) => setSearchValue(newValue);
 
-	const [checkboxPlanets, setCheckboxPlanets] = React.useState(false);
+	const [checkboxPlanets, setCheckboxPlanets] = useState(false);
 	const onClickCheckboxPlanets = () => setCheckboxPlanets(!checkboxPlanets);
 
-	const [checkboxLune, setCheckboxLune] = React.useState(false);
+	const [checkboxLune, setCheckboxLune] = useState(false);
 	const onClickCheckboxLune = () => setCheckboxLune(!checkboxLune);
 
-	const [checkboxTellurique, setCheckboxTellurique] = React.useState(false);
+	const [checkboxTellurique, setCheckboxTellurique] = useState(false);
 	const onClickCheckboxTellurique = () =>
 		setCheckboxTellurique(!checkboxTellurique);
 
-	const [checkboxGazeuse, setCheckboxGazeuse] = React.useState(false);
+	const [checkboxGazeuse, setCheckboxGazeuse] = useState(false);
 	const onClickCheckboxGazeuse = () => setCheckboxGazeuse(!checkboxGazeuse);
 
-	const [checkboxNaine, setCheckboxNaine] = React.useState(false);
+	const [checkboxNaine, setCheckboxNaine] = useState(false);
 	const onClickCheckboxNaine = () => setCheckboxNaine(!checkboxNaine);
 
 	const setCheckboxTelluriqueToFalse = () => setCheckboxTellurique(false);
@@ -32,16 +32,16 @@ function Planets() {
 	const setCheckboxLuneToFalse = () => setCheckboxLune(false);
 	const setCheckboxPlanetsToFalse = () => setCheckboxPlanets(false);
 
-	const [clickPlanets, setClickPlanets] = React.useState(false);
-	const [classN, setClassN] = React.useState("");
+	const [clickPlanets, setClickPlanets] = useState(false);
+	const [classN, setClassN] = useState("");
 	const handlePlanets = (className) => {
 		setClickPlanets(!clickPlanets);
 		setClassN(className);
 	};
 
-	const [api, setApi] = React.useState([]);
+	const [api, setApi] = useState([]);
 
-	const [displayFilter, setDisplayFilter] = React.useState(false);
+	const [displayFilter, setDisplayFilter] = useState(false);
 	const handleFilter = () => setDisplayFilter(!displayFilter);
 
 	useEffect(() => {

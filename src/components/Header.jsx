@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/Header.css";
 
@@ -27,15 +27,22 @@ function Header() {
 			className: "quiz slideInDown-4",
 		},
 	];
+	const handleResize = useCallback((e) => {
+		if (window.innerWidth >= 600) {
+			setShowLinks(false);
+		}
+	}, []);
 
 	useEffect(() => {
+		window.addEventListener("resize", handleResize);
 		if (showLinks) document.body.style.overflow = "hidden";
 		else document.body.style.overflow = "auto";
 
 		return () => {
 			document.body.style.overflow = "auto";
+			document.removeEventListener("resize", handleResize);
 		};
-	}, [showLinks]);
+	}, [showLinks, handleResize]);
 
 	return (
 		<nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
@@ -50,7 +57,7 @@ function Header() {
 						<Link
 							to={link.href}
 							className=" navbar-link"
-							onClick={() => setShowLinks(!showLinks)}
+							onClick={() => setShowLinks(false)}
 						>
 							{link.label}
 						</Link>
@@ -60,7 +67,9 @@ function Header() {
 			<button
 				type="button"
 				className="navbar-burger"
-				onClick={() => setShowLinks(!showLinks)}
+				onClick={() => {
+					setShowLinks(!showLinks);
+				}}
 			>
 				<span className="burger-bar" />
 			</button>
