@@ -1,0 +1,36 @@
+name: astro-quiz-CI
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:      
+  production:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.12.2'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the Vite project
+        run: npm run build
+
+      - name: Copy dist build files to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          source: "dist/*"
+          target: /home/lukasz/apps/astro-quiz/dist/
+          strip_components: 1
