@@ -1,0 +1,212 @@
+:root {
+	--main-size: 1rem;
+	--border-radius: 12px;
+	--font-family: "Fredoka", sans-serif;
+	--orange: rgba(203, 136, 0, 1);
+	--dark: rgba(189, 142, 41, 0.157);
+}
+
+.astronaut-section {
+	height: calc(100vh - 180px);
+}
+
+/* BUBBLE PART */
+
+.knowledge-bubble {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 10vh;
+	margin-left: 130px;
+	width: 170px;
+	height: 200px;
+}
+
+.knowledge-bubble img {
+	z-index: -1;
+	height: 150px;
+}
+
+.knowledge-bubble p {
+	text-align: center;
+	position: absolute;
+	font-family: var(--font-family);
+	top: 45px;
+}
+
+.knowledge-astronaut img {
+	margin-top: 10vh;
+	width: clamp(30vh, 60vw, 40vh);
+	animation: astronaut 3s infinite ease-in-out;
+	margin-left: 1%;
+}
+
+.knowledge-astronaut button {
+	cursor: pointer;
+	transition: transform 0.4s ease-in-out;
+	position: absolute;
+	border: none;
+	top: 40vh;
+	left: 70%;
+	height: clamp(20px, 14vw, 80px);
+	width: clamp(20px, 14vw, 80px);
+	border-radius: 50%;
+	animation: shadow 2s infinite ease-in-out;
+	box-shadow:
+		inset 0 0 50px #fff, inset 20px 0 60px var(--orange),
+		inset -20px 0 60px var(--orange), inset 20px 0 300px whitesmoke,
+		inset -20px 0 300px var(--orange), 0 0 50px #fff, -10px 0 60px white,
+		10px 0 60px white;
+}
+
+.knowledge-astronaut button:hover {
+	transform: scale(1.2);
+}
+
+@keyframes astronaut {
+	0% {
+		transform: translateY(-20px);
+	}
+	50% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-20px);
+	}
+}
+
+@keyframes shadow {
+	0% {
+		box-shadow:
+			inset 0 0 50px #fff, inset 20px 0 60px var(--orange),
+			inset -20px 0 60px var(--orange), inset 20px 0 300px whitesmoke,
+			inset -20px 0 300px var(--orange), 0 0 50px #fff, -10px 0 60px white,
+			10px 0 60px white;
+	}
+	50% {
+		box-shadow:
+			inset 0 0 50px #fff, inset 20px 0 60px var(--orange),
+			inset -20px 0 60px var(--orange), inset 20px 0 300px whitesmoke,
+			inset -20px 0 300px var(--orange), 0 0 100px #fff,
+			-10px 0 60px rgba(255, 255, 255, 0.995), 10px 0 60px white;
+	}
+	100% {
+		box-shadow:
+			inset 0 0 50px #fff, inset 20px 0 60px var(--orange),
+			inset -20px 0 60px var(--orange), inset 20px 0 300px whitesmoke,
+			inset -20px 0 300px var(--orange), 0 0 50px #fff, -10px 0 60px white,
+			10px 0 60px white;
+	}
+}
+
+/* KNOWLEDGE PART */
+
+.knowledge-card {
+	animation: fadein 4s;
+}
+
+.title {
+	text-align: center;
+	background-color: white;
+	margin-inline: 10%;
+	margin-top: 15vh;
+	padding-block: 0.5vh;
+	border: double 4px transparent;
+	border-radius: var(--border-radius);
+	background-image: linear-gradient(white, white),
+		radial-gradient(circle at top right, #eec643, #b68f0e);
+	background-origin: border-box;
+	background-clip: padding-box, border-box;
+	box-shadow: -10px 10px 0px 4px rgba(202, 202, 202, 0.71), -20px 20px 0px 4px
+		rgba(202, 202, 202, 0.21);
+}
+
+.title p {
+	padding-block: 12px;
+	margin-inline: 12px;
+	font-family: var(--font-family);
+	font-size: clamp(1rem, -0.875rem + 8.333vw, 1.9rem);
+	font-weight: bold;
+}
+
+.knowledge {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-block: 12px;
+	margin-top: 180px;
+	margin-bottom: 20vh;
+	margin-inline: 10%;
+	border: 4px solid #eec643;
+	border-radius: var(--border-radius);
+	background-color: white;
+}
+
+.knowledge img {
+	top: -150px;
+	height: 160px;
+	transition: left 0.5s ease;
+	position: absolute;
+	filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.knowledge p {
+	text-align: center;
+	font-family: var(--font-family);
+	font-size: clamp(1rem, -0.875rem + 8.333vw, 2rem);
+	padding-inline: 12px;
+}
+
+@media screen and (min-width: 768px) {
+	.knowledge {
+		margin-top: 30vh;
+	}
+
+	.knowledge-elements p {
+		padding-inline: 70px;
+	}
+
+	.knowledge-bubble {
+		margin-left: 200px;
+		margin-top: 60px;
+	}
+
+	.knowledge-bubble img {
+		height: clamp(30vh, 28vw, 32vh);
+		width: 35vh;
+	}
+
+	.knowledge-bubble p {
+		top: 20px;
+		font-size: 20px;
+	}
+
+	.knowledge-astronaut button {
+		top: 50vh;
+		height: 70px;
+		width: 70px;
+	}
+
+	.knowledge-astronaut img {
+		margin-left: 6vh;
+		margin-bottom: 20vh;
+	}
+
+	.knowledge img {
+		rotate: -45deg;
+		top: -120px;
+		left: -110px;
+		height: 200px;
+	}
+}
